@@ -1,8 +1,6 @@
 import os
 import sys
 
-import multiprocessing as mp
-
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 
@@ -12,14 +10,15 @@ def generate(index, num_procs, table):
 
 if __name__ == "__main__":
     os.chdir("dbgen")
-    table = str(sys.argv[1])
-    db_gen_path = str(sys.argv[2])
-    os.environ["DSS_PATH"] = db_gen_path
-    num_procs = mp.cpu_count()
+    table_shortcut = str(sys.argv[1])
+    dataset_path = str(sys.argv[2])
+    num_procs = str(sys.argv[3])
+
+    os.environ["DSS_PATH"] = dataset_path
     with ThreadPoolExecutor(max_workers=num_procs) as executor:
         futures = list()
         for index in range(num_procs):
-            futures.append(executor.submit(generate, index + 1, num_procs, table))
+            futures.append(executor.submit(generate, index + 1, num_procs, table_shortcut))
 
         for future in as_completed(futures):
             print(future.result())
