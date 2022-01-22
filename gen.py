@@ -7,7 +7,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 
 def generate(index, num_procs, table):
-    os.system(f"./dbgen -vf -s 100 -C {num_procs} -S {index} -T {table} -f")
+    os.system(f"./dbgen/dbgen -vf -s 100 -C {num_procs} -S {index} -T {table} -f")
 
 
 if __name__ == "__main__":
