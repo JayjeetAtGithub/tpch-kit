@@ -12,7 +12,7 @@ if __name__ == "__main__":
     os.chdir("dbgen")
     table_shortcut = str(sys.argv[1])
     dataset_path = str(sys.argv[2])
-    num_procs = str(sys.argv[3])
+    num_procs = int(sys.argv[3])
 
     os.environ["DSS_PATH"] = dataset_path
     with ThreadPoolExecutor(max_workers=num_procs) as executor:
