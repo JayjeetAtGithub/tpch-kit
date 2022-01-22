@@ -13,8 +13,8 @@ def generate(index, num_procs, table):
 if __name__ == "__main__":
     table = str(sys.argv[1])
     db_gen_path = str(sys.argv[2])
-    num_procs = str(sys.argv[3])
     os.environ["DSS_PATH"] = db_gen_path
+    num_procs = mp.cpu_count()
     with ThreadPoolExecutor(max_workers=num_procs) as executor:
         futures = list()
         for index in range(num_procs):

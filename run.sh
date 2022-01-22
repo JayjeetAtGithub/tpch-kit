@@ -15,4 +15,7 @@ mkdir -p /mnt/cephfs/tpch_sf100/nation
 mkdir -p /mnt/cephfs/tpch_sf100/region
 
 echo "Now execute : "
-echo "python3 gen.py <table> <path> <procs>"
+echo "python3 gen.py <table> <path>"
+
+# supplier: 140MB
+
