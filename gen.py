@@ -7,10 +7,11 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 
 def generate(index, num_procs, table):
-    os.system(f"./dbgen/dbgen -vf -s 100 -C {num_procs} -S {index} -T {table} -f")
+    os.system(f"dbgen -vf -s 100 -C {num_procs} -S {index} -T {table} -f")
 
 
 if __name__ == "__main__":
+    os.chdir("dbgen")
     table = str(sys.argv[1])
     db_gen_path = str(sys.argv[2])
     os.environ["DSS_PATH"] = db_gen_path
