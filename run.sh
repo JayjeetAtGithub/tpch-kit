@@ -3,7 +3,6 @@ set -e
 
 cd dbgen/
 make MACHINE=LINUX
-cd ../
 
 mkdir -p /mnt/cephfs/tpch_sf100/lineitem
 mkdir -p /mnt/cephfs/tpch_sf100/customer
