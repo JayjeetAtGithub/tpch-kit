@@ -33,6 +33,7 @@ if __name__ == "__main__":
 
     for table in tables:
         table_dir = os.path.join(base_dir, table)
+        os.makedirs(os.path.join(table_dir, "parquet"), exist_ok=True)
         print("Reading files from ", table_dir)
         for file in os.listdir(table_dir):
             df = pd.read_csv(os.path.join(table_dir, file), sep="|", names=schemas[table], header=None)
