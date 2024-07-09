@@ -33,7 +33,7 @@ if __name__ == "__main__":
 
     for table in tables:
         table_dir = os.path.join(base_dir, table)
-        print("Reading files from", table_dir)
+        print("Reading files from ", table_dir)
         for file in os.listdir(table_dir):
             df = pd.read_csv(os.path.join(table_dir, file), sep="|", names=schemas[table], header=None)
             df.to_parquet(os.path.join(base_dir, file.replace("tbl", "parquet")))
