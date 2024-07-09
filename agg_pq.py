@@ -23,6 +23,7 @@ if __name__ == "__main__":
     for table in tables:
         table_parquet_dir = os.path.join(base_dir, table, "parquet")
         table_parquet_files = os.listdir(table_parquet_dir)
+        print("Merging ", len(table_parquet_files), " files from ", table_parquet_dir)
         df_list = list()
         for file in table_parquet_files:
             print("Reading file ", os.path.join(table_parquet_dir, file))
