@@ -8,6 +8,7 @@ import pandas as pd
 
 
 def read_and_convert(table_dir, file, cols):
+    print("Reading file ", os.path.join(table_dir, file))
     df = pd.read_csv(os.path.join(table_dir, file), sep="|", names=cols, header=None)
     df.to_parquet(os.path.join(table_dir, "parquet", file.replace("tbl", "parquet")))
 
