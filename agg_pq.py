@@ -25,6 +25,7 @@ if __name__ == "__main__":
         table_parquet_files = os.listdir(table_parquet_dir)
         df_list = list()
         for file in table_parquet_files:
+            print("Reading file ", os.path.join(table_parquet_dir, file))
             df = pd.read_parquet(os.path.join(table_parquet_dir, file))
             df_list.append(df)
         final_df = pd.concat(df_list)
