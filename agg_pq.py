@@ -4,16 +4,18 @@ import pandas as pd
 if __name__ == "__main__":
     base_dir = str(sys.argv[1])
 
-    tables = [
-        "customer",
-        "lineitem",
-        "nation",
-        "orders",
-        "part",
-        "partsupp",
-        "supplier",
-        "region"
-    ]
+    # tables = [
+    #     "customer",
+    #     "lineitem",
+    #     "nation",
+    #     "orders",
+    #     "part",
+    #     "partsupp",
+    #     "supplier",
+    #     "region"
+    # ]
+
+    tables = ["customer"]
 
     for table in tables:
         table_parquet_dir = os.path.join(base_dir, table, "parquet")
