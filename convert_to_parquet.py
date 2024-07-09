@@ -29,7 +29,7 @@ if __name__ == "__main__":
         "lineitem": ["l_orderkey", "l_partkey", "l_suppkey", "l_linenumber", "l_quantity", "l_extendedprice", "l_discount", "l_tax", "l_returnflag", "l_linestatus", "l_shipdate", "l_commitdate", "l_receiptdate", "l_shipinstruct", "l_shipmode", "l_comment"]
     }
 
-    tables = ["region"]
+    tables = ["lineitem"]
 
     for table in tables:
         table_dir = os.path.join(base_dir, table)
