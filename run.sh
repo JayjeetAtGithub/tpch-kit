@@ -1,23 +1,23 @@
 #!/bin/bash
 set -e
 
-cd dbgen/
-make MACHINE=LINUX
+scale_factor=$1
+dataset_dir="/nvme/1/tpch_sf$scale_factor"
 
-mkdir -p /mnt/cephfs/tpch_sf100/lineitem
-mkdir -p /mnt/cephfs/tpch_sf100/customer
-mkdir -p /mnt/cephfs/tpch_sf100/orders
-mkdir -p /mnt/cephfs/tpch_sf100/part
-mkdir -p /mnt/cephfs/tpch_sf100/partsupp
-mkdir -p /mnt/cephfs/tpch_sf100/supplier
-mkdir -p /mnt/cephfs/tpch_sf100/nation
-mkdir -p /mnt/cephfs/tpch_sf100/region
+mkdir -p ${dataset_dir}/lineitem
+mkdir -p ${dataset_dir}/customer
+mkdir -p ${dataset_dir}/orders
+mkdir -p ${dataset_dir}/part
+mkdir -p ${dataset_dir}/partsupp
+mkdir -p ${dataset_dir}/supplier
+mkdir -p ${dataset_dir}/nation
+mkdir -p ${dataset_dir}/region
 
-python3 gen.py L /mnt/cephfs/tpch_sf100/lineitem 128
-python3 gen.py O /mnt/cephfs/tpch_sf100/orders 64
-python3 gen.py S /mnt/cephfs/tpch_sf100/partsupp 64 
-python3 gen.py P /mnt/cephfs/tpch_sf100/part 32 
-python3 gen.py c /mnt/cephfs/tpch_sf100/customer 32 
-python3 gen.py s /mnt/cephfs/tpch_sf100/supplier 10
-python3 gen.py n /mnt/cephfs/tpch_sf100/nation 1 
-python3 gen.py r /mnt/cephfs/tpch_sf100/region 1 
+python3 gen.py L ${dataset_dir}/lineitem 128 ${scale_factor}
+python3 gen.py O ${dataset_dir}/orders 64 ${scale_factor}
+python3 gen.py S ${dataset_dir}/partsupp 64 ${scale_factor}
+python3 gen.py P ${dataset_dir}/part 32 ${scale_factor}
+python3 gen.py c ${dataset_dir}/customer 32 ${scale_factor}
+python3 gen.py s ${dataset_dir}/supplier 10 ${scale_factor}
+python3 gen.py n ${dataset_dir}/nation 1 ${scale_factor}
+python3 gen.py r ${dataset_dir}/region 1 ${scale_factor}
