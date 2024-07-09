@@ -16,6 +16,6 @@ if __name__ == "__main__":
         print("Reading files from", table_dir)
         for file in os.listdir(table_dir):
             if file.endswith(".tbl"):
-                df = pd.read_csv(os.path.join(table_dir, file))
+                df = pd.read_csv(os.path.join(table_dir, file), sep="|", header=None)
                 print(df)
                 df.to_parquet(os.path.join(table_dir, file.replace(".csv", ".parquet")))
