@@ -18,7 +18,7 @@ if __name__ == "__main__":
     #     "region"
     # ]
 
-    tables = ["customer"]
+    tables = ["part", "supplier", "partsupp", "nation", "region"]
 
     for table in tables:
         table_parquet_dir = os.path.join(base_dir, table, "parquet")
