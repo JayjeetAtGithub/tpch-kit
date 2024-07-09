@@ -7,8 +7,8 @@ from concurrent.futures import ThreadPoolExecutor
 import pandas as pd
 
 
-def read_and_convert(table_dir, file, schemas):
-    df = pd.read_csv(os.path.join(table_dir, file), sep="|", names=schemas[table], header=None)
+def read_and_convert(table_dir, file, cols):
+    df = pd.read_csv(os.path.join(table_dir, file), sep="|", names=cols, header=None)
     df.to_parquet(os.path.join(table_dir, "parquet", file.replace("tbl", "parquet")))
 
 
@@ -46,4 +46,4 @@ if __name__ == "__main__":
 
         with ThreadPoolExecutor(max_workers=mp.cpu_count()) as executor:
             for file in os.listdir(table_dir):
-                executor.submit(read_and_convert, table_dir, file, schemas)
+                executor.submit(read_and_convert, table_dir, file, schemas[table])
