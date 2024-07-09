@@ -1,22 +1,30 @@
 import os
 import sys
 
+import multiprocessing as mp
+from concurrent.futures import ThreadPoolExecutor
+
 import pandas as pd
+
+
+def read_and_convert(table_dir, file, schemas):
+    df = pd.read_csv(os.path.join(table_dir, file), sep="|", names=schemas[table], header=None)
+    df.to_parquet(os.path.join(table_dir, "parquet", file.replace("tbl", "parquet")))
 
 
 if __name__ == "__main__":
     base_dir = str(sys.argv[1])
 
-    # tables = [
-    #     "customer",
-    #     "lineitem",
-    #     "nation",
-    #     "orders",
-    #     "part",
-    #     "partsupp",
-    #     "supplier",
-    #     "region"
-    # ]
+    tables = [
+        "customer",
+        "lineitem",
+        "nation",
+        "orders",
+        "part",
+        "partsupp",
+        "supplier",
+        "region"
+    ]
 
     schemas = {
         "region": ["r_regionkey", "r_name", "r_comment"],
@@ -35,6 +43,7 @@ if __name__ == "__main__":
         table_dir = os.path.join(base_dir, table)
         os.makedirs(os.path.join(table_dir, "parquet"), exist_ok=True)
         print("Reading files from ", table_dir)
-        for file in os.listdir(table_dir):
-            df = pd.read_csv(os.path.join(table_dir, file), sep="|", names=schemas[table], header=None)
-            df.to_parquet(os.path.join(table_dir, "parquet", file.replace("tbl", "parquet")))
+
+        with ThreadPoolExecutor(max_workers=mp.cpu_count()) as executor:
+            for file in os.listdir(table_dir):
+                executor.submit(read_and_convert, table_dir, file, schemas)
