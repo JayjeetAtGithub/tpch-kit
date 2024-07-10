@@ -16,17 +16,6 @@ def read_and_convert(table_dir, file, cols):
 if __name__ == "__main__":
     base_dir = str(sys.argv[1])
 
-    tables = [
-        "customer",
-        "lineitem",
-        "nation",
-        "orders",
-        "part",
-        "partsupp",
-        "supplier",
-        "region"
-    ]
-
     schemas = {
         "region": ["r_regionkey", "r_name", "r_comment"],
         "nation": ["n_nationkey", "n_name", "n_regionkey", "n_comment"],
@@ -39,7 +28,7 @@ if __name__ == "__main__":
     }
 
     # Add `lineitem` to the list
-    tables = ["region", "nation", "customer", "part", "supplier", "partsupp", "orders"]
+    tables = ["region", "nation", "customer", "part", "supplier", "partsupp", "orders", "lineitem"]
 
     for table in tables:
         table_dir = os.path.join(base_dir, table)
