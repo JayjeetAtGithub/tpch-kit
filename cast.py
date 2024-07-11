@@ -14,6 +14,9 @@ if __name__ == "__main__":
             df = pd.read_parquet(filepath)
             df["l_linenumber"] = df["l_linenumber"].astype("int64")
             df["l_quantity"] = df["l_quantity"].astype("int64")
+            df["l_shipdate"] = df["l_extendedprice"].astype("str")
+            df["l_commitdate"] = df["l_commitdate"].astype("str")
+            df["l_receiptdate"] = df["l_receiptdate"].astype("str")
             df.to_parquet(filepath, index=False)
         
         elif filepath.endswith("part.parquet"):
@@ -29,4 +32,5 @@ if __name__ == "__main__":
         elif filepath.endswith("orders.parquet"):
             df = pd.read_parquet(filepath)
             df["o_shippriority"] = df["o_shippriority"].astype("int64")
+            df["o_orderdate"] = df["o_orderdate"].astype("str")
             df.to_parquet(filepath, index=False)
