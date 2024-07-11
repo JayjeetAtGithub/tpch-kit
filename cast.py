@@ -28,5 +28,6 @@ if __name__ == "__main__":
     elif filepath.endswith("orders.parquet"):
         df = pd.read_parquet(filepath)
         df["o_shippriority"] = df["o_shippriority"].astype("int64")
+        df["o_orderdate"] = pd.to_datetime(df["o_orderdate"])
         df.to_parquet(filepath, index=False)
     
