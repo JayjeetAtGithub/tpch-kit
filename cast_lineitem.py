@@ -4,6 +4,7 @@ import pandas as pd
 
 if __name__ == "__main__":
     filepath = str(sys.argv[1])
+    print("Reading file ", filepath)
 
     if filepath.endswith("lineitem.parquet"):
         df = pd.read_parquet(filepath)
