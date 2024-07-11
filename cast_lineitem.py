@@ -8,4 +8,4 @@ if __name__ == "__main__":
 
     df["l_quantity"] = df["l_quantity"].astype("int64")
 
-    df.to_parquet(filepath)
+    df.to_parquet(filepath, index=False)
