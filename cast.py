@@ -33,5 +33,5 @@ if __name__ == "__main__":
             df = pd.read_parquet(filepath)
             df["o_shippriority"] = df["o_shippriority"].astype("int64")
             df["o_orderdate"] = pd.to_datetime(df["o_orderdate"])
-            df.to_parquet(filepath, index=False, engine="pyarrow")
+            df.to_parquet(filepath, index=False")
         
