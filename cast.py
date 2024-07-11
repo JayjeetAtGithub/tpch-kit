@@ -14,9 +14,9 @@ if __name__ == "__main__":
             df = pd.read_parquet(filepath)
             df["l_linenumber"] = df["l_linenumber"].astype("int64")
             df["l_quantity"] = df["l_quantity"].astype("int64")
-            df["l_shipdate"] = df["l_shipdate"].astype("str")
-            df["l_commitdate"] = df["l_commitdate"].astype("str")
-            df["l_receiptdate"] = df["l_receiptdate"].astype("str")
+            df["l_shipdate"] = df["l_shipdate"].astype("int32")
+            df["l_commitdate"] = df["l_commitdate"].astype("int32")
+            df["l_receiptdate"] = df["l_receiptdate"].astype("int32")
             df.to_parquet(filepath, index=False, engine="pyarrow")
         
         elif filepath.endswith("part.parquet"):
