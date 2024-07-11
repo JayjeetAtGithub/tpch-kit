@@ -12,7 +12,7 @@ if __name__ == "__main__":
         df["l_quantity"] = df["l_quantity"].astype("int64")
         df["l_shipdate"] = pd.to_datetime(df["l_shipdate"])
         df["l_commitdate"] = pd.to_datetime(df["l_commitdate"])
-        df["l_receiptdate"] = pd.to_datetime(df["l_receiptdate"]).")
+        df["l_receiptdate"] = pd.to_datetime(df["l_receiptdate"])
         df.to_parquet(filepath, index=False)
     
     elif filepath.endswith("part.parquet"):
