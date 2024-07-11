@@ -14,9 +14,9 @@ if __name__ == "__main__":
             df = pd.read_parquet(filepath)
             df["l_linenumber"] = df["l_linenumber"].astype("int64")
             df["l_quantity"] = df["l_quantity"].astype("int64")
-            df["l_shipdate"] = df["l_shipdate"].astype("int32")
-            df["l_commitdate"] = df["l_commitdate"].astype("int32")
-            df["l_receiptdate"] = df["l_receiptdate"].astype("int32")
+            df["l_shipdate"] = pd.to_datetime(df["l_shipdate"])
+            df["l_commitdate"] = pd.to_datetime(df["l_commitdate"])
+            df["l_receiptdate"] = pd.to_datetime(df["l_receiptdate"])
             df.to_parquet(filepath, index=False, engine="pyarrow")
         
         elif filepath.endswith("part.parquet"):
@@ -32,6 +32,6 @@ if __name__ == "__main__":
         elif filepath.endswith("orders.parquet"):
             df = pd.read_parquet(filepath)
             df["o_shippriority"] = df["o_shippriority"].astype("int64")
-            df["o_orderdate"] = df["o_orderdate"].astype("str")
+            df["o_orderdate"] = pd.to_datetime(df["o_orderdate"])
             df.to_parquet(filepath, index=False, engine="pyarrow")
         
