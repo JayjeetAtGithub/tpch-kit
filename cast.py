@@ -10,9 +10,9 @@ if __name__ == "__main__":
         df = pd.read_parquet(filepath)
         df["l_linenumber"] = df["l_linenumber"].astype("int64")
         df["l_quantity"] = df["l_quantity"].astype("int64")
-        df["l_shipdate"] = pd.to_datetime(df["l_shipdate"])
-        df["l_commitdate"] = pd.to_datetime(df["l_commitdate"])
-        df["l_receiptdate"] = pd.to_datetime(df["l_receiptdate"])
+        df["l_shipdate"] = pd.to_datetime(df["l_shipdate"], format="%Y-%m-%d")
+        df["l_commitdate"] = pd.to_datetime(df["l_commitdate"], format="%Y-%m-%d")
+        df["l_receiptdate"] = pd.to_datetime(df["l_receiptdate"], format="%Y-%m-%d")
         df.to_parquet(filepath, index=False)
     
     elif filepath.endswith("part.parquet"):
