@@ -10,6 +10,19 @@ import pandas as pd
 def read_and_convert(table_dir, file, cols):
     print("Reading file ", os.path.join(table_dir, file))
     df = pd.read_csv(os.path.join(table_dir, file), sep="|", names=cols, header=None)
+    if file == "lineitem.tbl":
+        df["l_linenumber"] = df["l_linenumber"].astype("int64")
+        df["l_quantity"] = df["l_quantity"].astype("int64")
+        df["l_shipdate"] = df["l_extendedprice"].astype("str")
+        df["l_commitdate"] = df["l_commitdate"].astype("str")
+        df["l_receiptdate"] = df["l_receiptdate"].astype("str")
+    elif file == "part.tbl":
+        df["p_size"] = df["p_size"].astype("int64")
+    elif file == "partsupp.tbl":
+        df["ps_availqty"] = df["ps_availqty"].astype("int64")
+    elif file == "orders.tbl":
+        df["o_shippriority"] = df["o_shippriority"].astype("int64")
+        df["o_orderdate"] = df["o_orderdate"].astype("str")
     df.to_parquet(os.path.join(table_dir, "parquet", file.replace("tbl", "parquet")), index=False)
 
 
