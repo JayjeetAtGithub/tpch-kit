@@ -2,7 +2,7 @@
 set -e
 
 scale_factor=$1
-dataset_dir="/nvme/1/tpch_sf$scale_factor"
+dataset_dir="/raid/tpch_sf$scale_factor"
 
 mkdir -p ${dataset_dir}/lineitem
 mkdir -p ${dataset_dir}/customer
