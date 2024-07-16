@@ -13,8 +13,8 @@ mkdir -p ${dataset_dir}/supplier
 mkdir -p ${dataset_dir}/nation
 mkdir -p ${dataset_dir}/region
 
-python3 gen.py L ${dataset_dir}/lineitem 128 ${scale_factor}
-python3 gen.py O ${dataset_dir}/orders 64 ${scale_factor}
+python3 gen.py L ${dataset_dir}/lineitem 96 ${scale_factor}
+python3 gen.py O ${dataset_dir}/orders 96 ${scale_factor}
 python3 gen.py S ${dataset_dir}/partsupp 64 ${scale_factor}
 python3 gen.py P ${dataset_dir}/part 32 ${scale_factor}
 python3 gen.py c ${dataset_dir}/customer 32 ${scale_factor}
