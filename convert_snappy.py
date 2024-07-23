@@ -13,5 +13,6 @@ if __name__ == "__main__":
     tables = ["lineitem", "orders", "part", "supplier", "customer", "nation", "region", "partsupp"]
     for table in tables:
         filename = os.path.join(dataset_dir, table + ".parquet")
+        snappy_filename = os.path.join(dataset_dir, table + ".snappy.parquet")
         df = pd.read_parquet(filename)
-        df.to_parquet(filename, compression="snappy")
+        df.to_parquet(snappy_filename, compression="snappy")
